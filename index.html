@@ -16,23 +16,37 @@
       and in this blog serves as postmortem to learn from that experience.
     </p>
 
+    <img src="meme.jpg" alt="meme" width="100%">
+
     <div class="card">
       <u>Duration of the outage:</u>
-      <span>Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</span>
+      <span>approximately one hour.</span>
       <br><br>
       <u>Magnitude as a result:</u>
-      <span>Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</span>
+      <span>the whole app was down, because of SPOF.</span>
       <br><br>
       <u>Cause of the issue:</u>
-      <span>Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</span>
+      <span>code base crash.</span>
     </div>
 
     <p>
-      Now that formalities are out of the way, let's dive to the meat of it, shall we?<br>
-      sjdj
+      Now that formalities are out of the way, let's dive to the meat of it, shall we?
     </p>
 
-    <h3></h3>
+    <h3>Timeline:</h3>
+
+    <ul>
+      <li><u>9:30</u> - an email reached me from the Watchdog alert, informing me of the incident.</li>
+      <li><u>9:35</u> - i started investigating the logs in hopes of identifying the erro.</li>
+      <li><u>9:45</u> - i had come to the conclusion that cause might be a bug from the latest deployment.</li>
+      <li><u>10:30</u> - after more investigation, the root cause was identified (the bug was trying to read attributes of a possibly null value)</li>
+      <li><u>11:05</u> - with quick fix everything was operating as expected again.</li>
+    </ul>
+
+    <p>
+      Identifying the error took longer than expected because it was a problem with the logic itself, after i found out exactly where the problamatic code resides, the fix was as easy as adding an if guard, that's all it took fortunately.<br>
+      I admit that not testing the code thouroughly before deployment, and after this incident i stopped taking unit tests for granted.
+    </p>
   
   </body>
 </html>
